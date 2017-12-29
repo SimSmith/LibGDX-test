@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class GdxExample extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
+	private int x = 0;
 	
 	@Override
 	public void create () {
@@ -21,7 +22,15 @@ public class GdxExample extends ApplicationAdapter {
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		batch.draw(img, 0, 0);
+
+		if(Gdx.input.isTouched())
+		    x += 1;
+		else if(x > 0)
+            x -= 2;
+		else
+		    x = 0;
+
+		batch.draw(img, x, x);
 		batch.end();
 	}
 	
